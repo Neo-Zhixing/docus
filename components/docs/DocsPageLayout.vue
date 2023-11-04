@@ -1,17 +1,18 @@
 <script setup lang="ts">
-const { page } = useContent()
+const { page } = defineProps(['page'])
+
 const { config, tree } = useDocus()
 const route = useRoute()
 
 const fallbackValue = (value: string, fallback = true) => {
-  if (typeof page.value?.[value] !== 'undefined') { return page.value[value] }
+  if (typeof page?.[value] !== 'undefined') { return page[value] }
   return fallback
 }
 
-const hasBody = computed(() => !page.value || page.value?.body?.children?.length > 0)
-const hasToc = computed(() => page.value?.toc !== false && page.value?.body?.toc?.links?.length >= 2)
+const hasBody = computed(() => !page || page?.body?.children?.length > 0)
+const hasToc = computed(() => page?.toc !== false && page?.body?.toc?.links?.length >= 2)
 
-const hasAside = computed(() => page.value?.aside !== false && (tree.value?.length > 1 || tree.value?.[0]?.children?.length))
+const hasAside = computed(() => page?.aside !== false && (tree.value?.length > 1 || tree.value?.[0]?.children?.length))
 const bottom = computed(() => fallbackValue('bottom', true))
 const isOpen = ref(false)
 
