@@ -83,10 +83,12 @@ onBeforeUnmount(() => {
       >
         Start writing in <ProseCodeInline>content/{{ page._file }}</ProseCodeInline> to see this page taking shape.
       </Alert>
-      <template v-if="hasBody && page && bottom">
-        <DocsPageBottom />
-        <DocsPrevNext />
-      </template>
+      <slot name="bottom" v-if="hasBody && bottom">
+        <template v-if="page">
+          <DocsPageBottom :page="page" />
+          <DocsPrevNext />
+        </template>
+      </slot>
     </article>
 
     <!-- TOC -->

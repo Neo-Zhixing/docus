@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { page } = useContent()
+const { page } = defineProps(['page'])
 const { config } = useDocus()
 </script>
 
@@ -12,17 +12,19 @@ const { config } = useDocus()
       v-if="config?.github?.edit"
       class="edit-link"
     >
-      <Icon name="uil:edit" />
-      <EditOnLink
-        v-slot="{ url }"
-        :page="page"
-      >
-        <ProseA :to="url">
-          <span>
-            Edit this page on GitHub
-          </span>
-        </ProseA>
-      </EditOnLink>
+      <slot name="edit-link">
+        <Icon name="uil:edit" />
+        <EditOnLink
+          v-slot="{ url }"
+          :page="page"
+        >
+          <ProseA :to="url">
+            <span>
+              Edit this page on GitHub
+            </span>
+          </ProseA>
+        </EditOnLink>
+      </slot>
     </div>
 
     <!-- Need to be supported by @nuxt/content -->
