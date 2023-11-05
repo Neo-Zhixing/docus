@@ -65,11 +65,13 @@ onBeforeUnmount(() => {
   >
     <!-- Aside -->
     <aside
-      v-if="hasAside"
+      v-if="hasAside || $slots.aside"
       ref="asideNav"
       class="aside-nav"
     >
-      <DocsAside class="app-aside" />
+      <slot name="aside">
+        <DocsAside class="app-aside" :tree="tree" />
+      </slot>
     </aside>
 
     <!-- Page Body -->

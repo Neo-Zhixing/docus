@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { tree } = useDocus()
+const { tree } = defineProps(['tree'])
 </script>
 
 <template>
