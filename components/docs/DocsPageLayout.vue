@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
           class="docs-toc-wrapper"
           :class="[isOpen && 'opened']"
         >
-          <DocsToc @move="isOpen = false" />
+          <DocsToc @move="isOpen = false" :toc="page.body.toc" />
         </div>
       </div>
     </div>

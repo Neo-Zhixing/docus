@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { toc } = useContent()
+const { toc } = defineProps(['toc'])
 const emit = defineEmits(['move'])
 </script>
 
